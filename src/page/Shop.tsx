@@ -67,9 +67,40 @@ export default function () {
         })
     }
 
+    const genderStyle:  Array<{[key: number]: string }> = {
+        0: "nam",
+        1: "nữ",
+    }
+
     return (
         <DefaultLayout>
             <div className="shop_sidebar_area">
+                <div className="widget catagory mb-50">
+                    <h6 className="widget-title mb-30">
+                        {t("Danh mục")}
+                    </h6>
+                    <div className="catagories-menu">
+                        <ul>
+                            <li
+                                style={{cursor: "pointer"}}
+                                className={dataSearch.category === undefined ? "active" : ""}
+                                onClick={() => handleChangeCategory("")}>
+                                <a>Unisex</a>
+                            </li>
+                            {
+                                Object.entries(genderStyle).map(([key, value]) => (
+                                    <li
+                                        key={key}
+                                        style={{ cursor: "pointer" }}
+                                        className={dataSearch.category === value ? "active" : ""}
+                                        onClick={() => handleChangeCategory(value)}>
+                                        <a>{value}</a>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </div>
                 <div className="widget catagory mb-50">
                     <h6 className="widget-title mb-30">
                         {t("Danh mục")}

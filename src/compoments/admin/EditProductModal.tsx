@@ -37,6 +37,7 @@ const EditProductModal = ({ isVisible,
     sizes,
     colors,
     refetchProduct,
+    genderStyle
 }: any) => {
     const [form] = Form.useForm();
     const [imagesFile, setImagesFile] = useState<any[]>(images)
@@ -62,7 +63,8 @@ const EditProductModal = ({ isVisible,
             productPrice,
             productQuantity,
             productCurrentPrice,
-            productSize
+            productSize,
+            genderStyle
         } = data
 
         try {
@@ -80,6 +82,8 @@ const EditProductModal = ({ isVisible,
                 );
                 listNewImages = res
             }
+
+            console.log(genderStyle, "genderStyle")
             const updateProduct = await DysonApi.updateProductById(id, {
                 name: productName,
                 description: productDescription,
@@ -90,6 +94,7 @@ const EditProductModal = ({ isVisible,
                 currentPrice: productCurrentPrice,
                 sizes: productSize,
                 colors: productColor,
+                genderStyle: +genderStyle
             })
             form.setFieldsValue({
                 productName: updateProduct.name,
@@ -99,6 +104,7 @@ const EditProductModal = ({ isVisible,
                 productQuantity: updateProduct.quantity,
                 productCurrentPrice: updateProduct.currentPrice,
                 productSize: updateProduct.sizes,
+                genderStyle: updateProduct.genderStyle.toString()
             })
 
             setImagesFile(updateProduct.images)
@@ -112,6 +118,8 @@ const EditProductModal = ({ isVisible,
             setIsLoading(false);
         }
     }
+
+    console.log(genderStyle, "genderStyle")
 
     const handleChooseThumbnail = async ({ file }: any) => {
         if (IMAGE_TYPES.includes(file.type)) {
@@ -220,6 +228,7 @@ const EditProductModal = ({ isVisible,
                         productQuantity: quantity,
                         productCurrentPrice: currentPrice,
                         productSize: sizes,
+                        genderStyle: genderStyle.toString()
                     }}
                     onFinish={handleSubmit}
                     form={form}
@@ -245,6 +254,23 @@ const EditProductModal = ({ isVisible,
                             className="border round-sm"
                             rows={4}
                         />
+                    </Form.Item>
+                    <Form.Item
+                        name={"genderStyle"}
+                        rules={[{
+                            required: true,
+                            message: 'Vui lòng chọn phong cách!'
+                        }]}
+                    >
+                        <Select
+                            placeholder={"Phong cách"}
+                            size="large"
+                            allowClear={true}
+                        >
+                            <Select.Option value="0">Nam</Select.Option>
+                            <Select.Option value="1">Nữ</Select.Option>
+                            <Select.Option value="2">Unisex</Select.Option>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item

@@ -54,7 +54,8 @@ const AddProductModal = ({
             productPrice,
             productQuantity,
             productCurrentPrice,
-            productSize
+            productSize,
+            genderStyle
         } = data
 
         if(productCurrentPrice && productCurrentPrice > productPrice) {
@@ -71,6 +72,7 @@ const AddProductModal = ({
                 }))
             }
 
+
             await DysonApi.addProduct({
                 name: productName,
                 description: productDescription,
@@ -80,7 +82,8 @@ const AddProductModal = ({
                 images: listNewImages,
                 currentPrice: productCurrentPrice ?? productPrice,
                 colors: productColor,
-                sizes: productSize
+                sizes: productSize,
+                genderStyle: +genderStyle
             })
             await refetchProduct()
             toast.success("Thêm sản phẩm thành công");
@@ -216,6 +219,23 @@ const AddProductModal = ({
                             className="border round-sm"
                             rows={4}
                         />
+                    </Form.Item>
+                    <Form.Item
+                        name={"genderStyle"}
+                        rules={[{
+                            required: true,
+                            message: 'Vui lòng chọn phong cách!'
+                        }]}
+                    >
+                        <Select
+                            placeholder={"Phong cách"}
+                            size="large"
+                            allowClear={true}
+                        >
+                            <Select.Option value="0">Nam</Select.Option>
+                            <Select.Option value="1">Nữ</Select.Option>
+                            <Select.Option value="2">Unisex</Select.Option>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item

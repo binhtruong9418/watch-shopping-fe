@@ -23,7 +23,7 @@ export default function ProductTable(): JSX.Element {
 
     const {
         data: listCategory = []
-    } = useQuery('getAllCategory',async () => {
+    } = useQuery('getAllCategory', async () => {
         return await DysonApi.getAllCategory()
     })
 
@@ -101,6 +101,12 @@ export default function ProductTable(): JSX.Element {
                     </div>
                 )
             }
+        },
+        {
+            title: "Phong cách",
+            dataIndex: "productGenderStyle",
+            key: "productGenderStyle",
+            width: 100
         },
         {
             title: 'Danh mục',
@@ -198,6 +204,8 @@ export default function ProductTable(): JSX.Element {
             key: product?._id,
             productImage: product?.images,
             productName: product?.name,
+            productGenderStyle: product?.genderStyle === 0 ? "Nam" : product?.genderStyle === 1 ? "Nữ" : "Unisex",
+            genderStyle: product?.genderStyle,
             productCategory: product?.category,
             productDescription: product?.description,
             productPrice: product?.price,
@@ -302,6 +310,7 @@ export default function ProductTable(): JSX.Element {
                     currentPrice={currentEditProduct.productCurrentPrice}
                     sizes={currentEditProduct.productSize}
                     colors={currentEditProduct.productColor}
+                    genderStyle={currentEditProduct.genderStyle}
                     refetchProduct={refetch}
                 />
             }

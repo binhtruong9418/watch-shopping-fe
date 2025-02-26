@@ -135,7 +135,7 @@ export default function OrderTable(): JSX.Element {
             key: 'orderDate',
             render: (orderDate: string) => (
                 <div>
-                    <p>{moment(orderDate).format('HH:MM')}</p>
+                    <p>{moment(orderDate).format('HH:mm')}</p>
                     <p>{moment(orderDate).format('DD/MM/YYYY')}</p>
                 </div>
             ),
@@ -182,7 +182,7 @@ export default function OrderTable(): JSX.Element {
                             {'Đang chờ'}
                         </Tag>
                     case ORDER_STATUS.PAID:
-                        return <Tag color="blue">{"Đã thanh toán"}</Tag>
+                        return <Tag color="blue">{"Chờ xác nhận"}</Tag>
                     case ORDER_STATUS.CONFIRMED:
                         return <Tag icon={<CheckCircleOutlined/>} color="success">{"Đã xác nhận"}</Tag>
                     case ORDER_STATUS.CANCELLED:

@@ -24,8 +24,8 @@ const Checkout = () => {
     const [listDistrict, setListDistrict] = useState<any[]>([])
     const [listWard, setListWard] = useState<any[]>([])
     const listProvince = JSON.parse(JSON.stringify(AddressJson))
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const [isCod, setIsCod] = useState<boolean>(false)
     const {t} = useTranslation()
 
 
@@ -76,6 +76,7 @@ const Checkout = () => {
         }
 
         try {
+            setIsLoading(true)
             const data = {
                 cartId: cookies.cart,
                 address: address,
@@ -86,18 +87,15 @@ const Checkout = () => {
                 phone: phone,
                 email: email,
                 note: note,
-                paymentMethod: isCod ? 'cod' : 'vnpay',
+                paymentMethod: 'cod',
             }
             const newOrder = await DysonApi.createOrder(data)
-            if(isCod) {
-                toast.success('Order success')
-                navigate(`/checkout/success/${newOrder._id}`)
-            } else {
-                const vnpayUrl = await DysonApi.createVnpayPaymentUrl(newOrder._id)
-                window.location.href = vnpayUrl
-            }
+            toast.success('Đặt hàng thành công', { position: 'top-left' })
+            navigate(`/checkout/success/${newOrder._id}`)
         } catch (error) {
-            toast.error('Order failed', { position: 'top-left' })
+            toast.error('Đặt hàng thất bại', { position: 'top-left' })
+        } finally {
+            setIsLoading(false)
         }
     }
     return (
@@ -236,24 +234,29 @@ const Checkout = () => {
                                 </ul>
 
 
-                                <div className="payment-method">
-                                    <div className="custom-control custom-checkbox mr-sm-2" onClick={() => {
-                                        setIsCod(!isCod)
-                                    }}>
-                                        <input
-                                            type="checkbox"
-                                            className="custom-control-input"
-                                            checked={isCod}
-                                        />
-                                        <label className="custom-control-label">
-                                            {t("Thanh toán khi nhận hàng")}
-                                        </label>
-                                    </div>
-                                </div>
+                                {/*<div className="payment-method">*/}
+                                {/*    <div className="custom-control custom-checkbox mr-sm-2" onClick={() => {*/}
+                                {/*        setIsCod(!isCod)*/}
+                                {/*    }}>*/}
+                                {/*        <input*/}
+                                {/*            type="checkbox"*/}
+                                {/*            className="custom-control-input"*/}
+                                {/*            checked={isCod}*/}
+                                {/*        />*/}
+                                {/*        <label className="custom-control-label">*/}
+                                {/*            {t("Thanh toán khi nhận hàng")}*/}
+                                {/*        </label>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
 
                                 <div className="cart-btn mt-100">
-                                    <button onClick={handleSubmit} className="btn amado-btn w-100">
-                                        {t("Thanh toán")}
+                                    <button
+                                        onClick={() => {
+                                            isLoading ? null : handleSubmit()
+                                        }}
+                                        className="btn amado-btn w-100"
+                                    >
+                                        {isLoading ? t("Đang xử lý...") : t("Đặt hàng")}
                                     </button>
                                 </div>
                             </div>

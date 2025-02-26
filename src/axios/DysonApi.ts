@@ -165,7 +165,7 @@ const DysonApi = {
             }
         });
 
-        return response.data.url
+        return response.data.fileUrl
     },
 
     createVnpayPaymentUrl: async (orderId: string): Promise<any> => {

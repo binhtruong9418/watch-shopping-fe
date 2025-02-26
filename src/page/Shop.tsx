@@ -16,6 +16,7 @@ export default function () {
         min: 0,
         max: 500000,
         name: '',
+        genderStyle: undefined,
     });
     const {t} = useTranslation()
 
@@ -67,37 +68,50 @@ export default function () {
         })
     }
 
-    const genderStyle:  Array<{[key: number]: string }> = {
-        0: "nam",
-        1: "nữ",
-    }
 
     return (
         <DefaultLayout>
             <div className="shop_sidebar_area">
                 <div className="widget catagory mb-50">
                     <h6 className="widget-title mb-30">
-                        {t("Danh mục")}
+                        {t("Phong cách")}
                     </h6>
                     <div className="catagories-menu">
                         <ul>
                             <li
                                 style={{cursor: "pointer"}}
-                                className={dataSearch.category === undefined ? "active" : ""}
-                                onClick={() => handleChangeCategory("")}>
+                                className={dataSearch.genderStyle === undefined ? "active" : ""}
+                                onClick={() => setDataSearch({
+                                    ...dataSearch,
+                                    genderStyle: undefined,
+                                    page: 1,
+                                })}>
                                 <a>Unisex</a>
                             </li>
-                            {
-                                Object.entries(genderStyle).map(([key, value]) => (
-                                    <li
-                                        key={key}
-                                        style={{ cursor: "pointer" }}
-                                        className={dataSearch.category === value ? "active" : ""}
-                                        onClick={() => handleChangeCategory(value)}>
-                                        <a>{value}</a>
-                                    </li>
-                                ))
-                            }
+                            <li
+                                style={{cursor: "pointer"}}
+                                className={dataSearch.genderStyle === 0 ? "active" : ""}
+                                onClick={() => {
+                                    setDataSearch({
+                                        ...dataSearch,
+                                        genderStyle: 0,
+                                        page: 1,
+                                    })
+                                }}>
+                                <a>Nam</a>
+                            </li>
+                            <li
+                                style={{cursor: "pointer"}}
+                                className={dataSearch.genderStyle === 1 ? "active" : ""}
+                                onClick={() => {
+                                    setDataSearch({
+                                        ...dataSearch,
+                                        genderStyle: 1,
+                                        page: 1,
+                                    })
+                                }}>
+                                <a>Nữ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

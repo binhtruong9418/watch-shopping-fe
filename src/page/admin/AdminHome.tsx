@@ -6,7 +6,7 @@ import CategoryTable from '../../compoments/admin/CategoryTable';
 import OrderTable from '../../compoments/admin/OrderTable';
 import { HomeOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import Logo from "../../assets/img/logo.png";
+// import Logo from "../../assets/img/logo.png";
 import viVN from 'antd/lib/locale/vi_VN';
 import {useMqtt} from "../../mqtt/MqttProvider.tsx";
 import {toast} from "react-toastify";
@@ -71,7 +71,7 @@ const AdminHome = () => {
                     collapsible={true}
                 >
                     <div className="logo my-3">
-                        <a href="#"><img src={Logo} alt=""/></a>
+                        {/*<a href="#"><img src={Logo} alt=""/></a>*/}
                     </div>
                     <Menu
                         theme="dark"

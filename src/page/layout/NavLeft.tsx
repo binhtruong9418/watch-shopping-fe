@@ -1,4 +1,4 @@
-import Logo from '../../assets/img/logo.png';
+// import Logo from '../../assets/img/logo.png';
 import Card from '../../assets/img/cart.png';
 import MobileNav from "./MobileNav.tsx";
 import {useState} from "react";
@@ -41,7 +41,7 @@ export default function NavLeft () {
                     <i className="fa fa-close" aria-hidden="true"></i>
                 </div>
                 <div className="logo">
-                    <Link to="/"><img src={Logo} alt=""/></Link>
+                    {/*<Link to="/"><img src={Logo} alt=""/></Link>*/}
                 </div>
                 <nav className="amado-nav">
                     <ul>

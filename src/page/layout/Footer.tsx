@@ -1,4 +1,4 @@
-import Logo from '../../assets/img/logo.png';
+// import Logo from '../../assets/img/logo.png';
 import {Link} from "react-router-dom";
 export default function () {
     return (
@@ -8,10 +8,10 @@ export default function () {
                     <div className="col-12 col-lg-4">
                         <div className="single_widget_area">
                             <div className="footer-logo mr-50">
-                                <Link to="/"><img style={{
-                                    height: "100px",
-                                    width: "100px"
-                                }} src={Logo} alt="" /></Link>
+                                {/*<Link to="/"><img style={{*/}
+                                {/*    height: "100px",*/}
+                                {/*    width: "100px"*/}
+                                {/*}} src={Logo} alt="" /></Link>*/}
                             </div>
                         </div>
                     </div>

@@ -76,20 +76,20 @@ export default function NavLeft () {
                         </span>
                     </Link>
                 </div>
-                <div className="social-info d-flex justify-content-between">
-                    <a href="https://github.com/binhtruong9418" target={"_blank"}>
-                        <i className="fa fa-github" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/binh-duc-731682170/" target={"_blank"}>
-                        <i className="fa fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/ducbinh9418/" target={"_blank"}>
-                        <i className="fa fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="mailto:binhtruong9418@gmail.com" target={"_blank"}>
-                        <i className="fa fa-envelope" aria-hidden="true"></i>
-                    </a>
-                </div>
+                {/*<div className="social-info d-flex justify-content-between">*/}
+                {/*    <a href="https://github.com/binhtruong9418" target={"_blank"}>*/}
+                {/*        <i className="fa fa-github" aria-hidden="true"></i>*/}
+                {/*    </a>*/}
+                {/*    <a href="https://www.linkedin.com/in/binh-duc-731682170/" target={"_blank"}>*/}
+                {/*        <i className="fa fa-linkedin" aria-hidden="true"></i>*/}
+                {/*    </a>*/}
+                {/*    <a href="https://www.facebook.com/ducbinh9418/" target={"_blank"}>*/}
+                {/*        <i className="fa fa-facebook" aria-hidden="true"></i>*/}
+                {/*    </a>*/}
+                {/*    <a href="mailto:binhtruong9418@gmail.com" target={"_blank"}>*/}
+                {/*        <i className="fa fa-envelope" aria-hidden="true"></i>*/}
+                {/*    </a>*/}
+                {/*</div>*/}
             </header>
         </>
     )
